@@ -32,8 +32,8 @@ def validate_move(move: str) -> bool:
     Args:
         move (str): user input
 
-    print(:)
-        [type]: [description]
+    Returns:
+        bool: validation
     """
     if move in moves:
         return True
@@ -51,8 +51,10 @@ def play_game(player1: str, player2: str) -> bool:
 
     print(:)
         str: win/even statement
+    
+    Returns:
+        bool: validation
     """
-
     validate_player1 = validate_move(player1)
     validate_player2 = validate_move(player2)
 
