@@ -43,7 +43,7 @@ def guess_the_number(rand_number: int, guess: str) -> bool:
 def evaluate_guess(rand_number: int, guess: str) -> bool:
     """
     guess and random number evaluation
-    
+
     Args:
         rand_number (int): input random number
         guess (str): user guessed number
