@@ -12,7 +12,7 @@ print(c)
 randomList_1 = []
 randomList_2 = []
 
-for i in range(0,10):
+for i in range(0, 10):
     n = random.randint(1, 20)
     randomList_1.append(n)
 randomList_1.sort()
