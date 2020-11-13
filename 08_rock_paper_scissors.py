@@ -51,7 +51,7 @@ def play_game(player1: str, player2: str) -> bool:
 
     print(:)
         str: win/even statement
-    
+
     Returns:
         bool: validation
     """
