@@ -1,5 +1,7 @@
 import random
 
+MIN_VALUE = 1000
+MAX_VALUE = 9999
 
 def input_validation(input_number: str) -> bool:
     """user input validation
@@ -10,8 +12,12 @@ def input_validation(input_number: str) -> bool:
     Returns:
         bool: valid or not
     """
-    input_number = int(input_number)
-    if 1000 <= input_number <= 9999:
+    try:
+        input_number = int(input_number)
+    except ValueError:
+        return False
+
+    if MIN_VALUE <= input_number <= MAX_VALUE:
         return True
 
     return False
@@ -23,28 +29,25 @@ def get_random_number() -> list:
     Returns:
         list: list of random numbers
     """
-    number = random.randint(1000,9999)
+    number = random.randint(MIN_VALUE, MAX_VALUE)
     digits = [int(x) for x in str(number)]
-    print(number)
-    return [digits]
+    #print(number)
+    #print(digits)
+    return digits
 
 
-def number_to_indices(input_number: str):
+def number_to_indices(input_number: str) -> list:
     """user input number transformed into the list
 
     Args:
         input_number (str): user input
 
     Returns:
-        bool, list: False if validation is not true, elif returns list
+        list: list of user input numbers
     """
-    validate = input_validation(input_number)
-    if not validate:
-        print("Input number must have four digits. Try again!")
-        return False
-    elif validate is True:
-        digits_input = [int(x) for x in str(input_number)]
-        return digits_input
+    digits_input = [int(x) for x in str(input_number)]
+    #print(digits_input)
+    return digits_input
 
 
 def compare_indices(random_num: list, input_num: list):
@@ -58,24 +61,34 @@ def compare_indices(random_num: list, input_num: list):
         list, int: list of correctly guessed numbers with position and almost guessed,
         cows and bulls score
     """
-    cows = 0
-    bulls = 0
     guessed_correctly = [None] * 4
     almost_guessed = []
 
     for i in range(len(input_num)):
         if input_num[i] == random_num[i]:
-            cows += 1
             guessed_correctly[i] = random_num[i]
+        elif input_num[i] in random_num:
+            almost_guessed.append(input_num[i])
+            print("number {i} is there but somewhere else.".format(i=input_num[i]))
 
-    for i in input_num:
-        if i in random_num and i not in guessed_correctly:
-            bulls += 1
-            almost_guessed.append(i)
-            print("number {i} is there but somewhere else.".format(i=i))
-
+    #print(almost_guessed)
     print(guessed_correctly)
-    return guessed_correctly, bulls, cows, almost_guessed
+    return {
+        'guessed_correctly' : guessed_correctly,
+        'almost_guessed' : almost_guessed
+        }
+
+
+def count_non_none(input_lst: list) -> int:
+    """calculation of the count of the not None elements in list
+
+    Args:
+        input_lst (list): input list
+
+    Returns:
+        int: count of the not None elements in list
+    """
+    return len(input_lst) - input_lst.count(None)
 
 
 def main():
@@ -84,34 +97,25 @@ def main():
     conditional validation
     """
     rnd_number = get_random_number()
-    bulls_in = 0
+    # bulls_in = 0
     guessed_almost = []
     while True:
         guess_four_digits = input("Guess four digits number: ")
+        if not input_validation(guess_four_digits):
+            print("Input number must have four digits. Try again!")
+            continue
         inp_number = number_to_indices(guess_four_digits)
-        if inp_number is False:
-            while True:
-                guess_four_digits = input("Guess again: ")
-                inp_number = number_to_indices(guess_four_digits)
-                if inp_number is False:
-                    continue
 
-                break
-
-        cows_in = 0
         compare = compare_indices(rnd_number, inp_number)
-        bulls_in += compare[1]
-        print("bulls are: {bulls_in}".format(bulls_in=bulls_in))
-        cows_in += compare[2]
-        guessed_almost = guessed_almost + compare[3]
-        for i in guessed_almost:
-            if guessed_almost.count(i) >= 2:
-                bulls_in -= 1
-                guessed_almost = list(set(guessed_almost))
-                break
+
+        cows_in = count_non_none(compare['guessed_correctly'])
+        guessed_almost = guessed_almost + compare['almost_guessed']
+        guessed_almost = list(set(guessed_almost))
+        bulls_in = len(guessed_almost)
+
         print("Almost guessed are {guessed_almost}".format(guessed_almost=guessed_almost))
         print("{cows} cows, {bulls} bulls".format(cows=cows_in, bulls=bulls_in))
-        if None not in compare[0]:
+        if None not in compare['guessed_correctly']:
             break
 
     print("That's it!")
