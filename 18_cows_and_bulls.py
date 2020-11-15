@@ -64,12 +64,12 @@ def compare_indices(random_num: list, input_num: list):
     guessed_correctly = [None] * 4
     almost_guessed = []
 
-    for i in range(len(input_num)):
-        if input_num[i] == random_num[i]:
+    for i, inputs in enumerate(input_num):
+        if inputs == random_num[i]:
             guessed_correctly[i] = random_num[i]
-        elif input_num[i] in random_num:
-            almost_guessed.append(input_num[i])
-            print("number {i} is there but somewhere else.".format(i=input_num[i]))
+        elif inputs in random_num:
+            almost_guessed.append(inputs)
+            print("number {i} is there but somewhere else.".format(i=inputs))
 
     #print(almost_guessed)
     print(guessed_correctly)
@@ -97,8 +97,8 @@ def main():
     conditional validation
     """
     rnd_number = get_random_number()
-    # bulls_in = 0
-    guessed_almost = []
+    # bulls = 0
+    almost_guessed = []
     while True:
         guess_four_digits = input("Guess four digits number: ")
         if not input_validation(guess_four_digits):
@@ -108,13 +108,13 @@ def main():
 
         compare = compare_indices(rnd_number, inp_number)
 
-        cows_in = count_non_none(compare['guessed_correctly'])
-        guessed_almost = guessed_almost + compare['almost_guessed']
-        guessed_almost = list(set(guessed_almost))
-        bulls_in = len(guessed_almost)
+        cows = count_non_none(compare['guessed_correctly'])
+        almost_guessed = almost_guessed + compare['almost_guessed']
+        almost_guessed = list(set(almost_guessed))
+        bulls = len(almost_guessed)
 
-        print("Almost guessed are {guessed_almost}".format(guessed_almost=guessed_almost))
-        print("{cows} cows, {bulls} bulls".format(cows=cows_in, bulls=bulls_in))
+        print("Almost guessed are {almost_guessed}".format(almost_guessed=almost_guessed))
+        print("{cows} cows, {bulls} bulls".format(cows=cows, bulls=bulls))
         if None not in compare['guessed_correctly']:
             break
 
