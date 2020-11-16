@@ -18,7 +18,7 @@ def guess_validator(input_guess: int) -> bool:
 
 
 
-def guess_the_number(rand_number: int, guess: str) -> bool:
+def guess_the_number(rand_number: int, guess_input: str) -> bool:
     """
     Args:
         rand_number (int): input random number
@@ -27,10 +27,10 @@ def guess_the_number(rand_number: int, guess: str) -> bool:
     Returns:
         bool: approval of the validation
     """
-    if guess == "exit":
+    if guess_input == "exit":
         return True
 
-    guess = int(guess)
+    guess = int(guess_input)
     guess_validation = guess_validator(guess)
 
     if not guess_validation:
@@ -40,7 +40,7 @@ def guess_the_number(rand_number: int, guess: str) -> bool:
     return evaluate_guess(rand_number, guess)
 
 
-def evaluate_guess(rand_number: int, guess: str) -> bool:
+def evaluate_guess(rand_number: int, guess: int) -> bool:
     """
     guess and random number evaluation
 

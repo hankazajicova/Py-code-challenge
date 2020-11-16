@@ -1,6 +1,6 @@
 input_string = input("Give me string🔫: ")
 
-input_string = input_string.replace(' ','')
+input_string = input_string.replace(' ', '')
 
 
 def is_palindromic(string: str) -> str:

@@ -88,8 +88,8 @@ def get_password(input_strength: str) -> bool:
         password = get_strong_pw()
 
     random.shuffle(password)
-    password = ''.join(password)
-    print(password)
+    password_final = ''.join(password)
+    print(password_final)
     return True
 
 

@@ -1,4 +1,4 @@
-number = int(input("Give me number: "))
+from typing import List
 
 
 def get_divisors(input_number: int) -> list:
@@ -13,13 +13,13 @@ def get_divisors(input_number: int) -> list:
     list_of_divisors = []
     x = range(1, int(input_number/2) + 1)
     for i in x:
-        if number % i == 0:
+        if input_number % i == 0:
             list_of_divisors.append(i)
-    list_of_divisors.append(number)
+    list_of_divisors.append(input_number)
     return list_of_divisors
 
 
-def is_prime(divisors: list) -> None:
+def is_prime(divisors: List[int]) -> bool:
     """find if the input number is prime or not
 
     Args:
@@ -27,8 +27,13 @@ def is_prime(divisors: list) -> None:
     """
     if len(divisors) == 2:
         print("Yes, this is prime number.")
-    else:
-        print("Nope, this is not prime number. Divisors are {divisors}".format(divisors=divisors))
+        return True
 
-divisors_of_number = get_divisors(number)
-is_prime(divisors_of_number)
+    print("Nope, this is not prime number. Divisors are {divisors}".format(divisors=divisors))
+    return False
+
+
+if __name__ == "__main__":
+    number = int(input("Give me number: "))
+    divisors_of_number = get_divisors(number)
+    is_prime(divisors_of_number)

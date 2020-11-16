@@ -11,5 +11,4 @@ nyt_titles = []
 for element in soup.select('.e1voiwgp0'):
     nyt_titles.append(element.text)
 
-
 print(nyt_titles)

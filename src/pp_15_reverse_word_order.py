@@ -31,8 +31,7 @@ def get_reverse_order(input_str: str) -> str:
         str: reversed order of input sentence
     """
     splitted = input_str.split()
-    new_order = splitted[::-1]
-    new_order = ' '.join(new_order)
+    new_order = ' '.join(splitted[::-1])
     return new_order
 
 reverse = get_reverse_order(input_sentence)
