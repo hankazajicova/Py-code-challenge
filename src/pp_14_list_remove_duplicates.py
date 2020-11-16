@@ -1,7 +1,7 @@
 import random
+from typing import List
 
-
-def create_random_list() -> list:
+def create_random_list() -> List[int]:
     """creates random list
 
     Returns:
@@ -18,7 +18,7 @@ rnd_list = create_random_list()
 print(rnd_list)
 
 
-def delete_duplicates_set(input_list: list) -> list:
+def delete_duplicates_set(input_list: List[int]) -> List[int]:
     """deletes duplicates with set
 
     Args:
@@ -34,7 +34,7 @@ no_duplicates_set = delete_duplicates_set(rnd_list)
 print(no_duplicates_set)
 
 
-def delete_duplicates_loop(input_list: list) -> list:
+def delete_duplicates_loop(input_list: List[int]) -> List[int]:
     """deletes duplicates with loop
 
     Args:
@@ -43,7 +43,7 @@ def delete_duplicates_loop(input_list: list) -> list:
     Returns:
         list: input list without duplicates
     """
-    no_duplicate_list = []
+    no_duplicate_list: List[int] = []
     for i in input_list:
         if i not in no_duplicate_list:
             no_duplicate_list.append(i)

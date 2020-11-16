@@ -4,7 +4,7 @@
 
 - for static analysis used [pylint](https://www.pylint.org/)
     ```bash
-    pylint *.py
+    pylint **/*.py
     ```
 
 - exercises for [git flow](https://guides.github.com/introduction/flow/) practice
