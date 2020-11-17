@@ -8,7 +8,7 @@
 
 ## For local development
 
-- for activating git pre-commit hooks run:
+- for git pre-commit hooks activation run:
 
     ```bash
     git config --local core.hooksPath .githooks/
