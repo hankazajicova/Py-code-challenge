@@ -1,15 +1,18 @@
 # Py-code-challenges 🐶
 
-- solutions of code challenges from [Practice Python](https://www.practicepython.org/)
+![Pipeline](https://github.com/hankazajicova/Py-code-challenge/workflows/Python%20package/badge.svg)
 
-- for static analysis used [pylint](https://www.pylint.org/)
-    ```bash
-    pylint **/*.py
-    ```
+- solutions of code challenges from [Practice Python](https://www.practicepython.org/)
 
 - exercises for [git flow](https://guides.github.com/introduction/flow/) practice
 
 ## For local development
+
+- for activating git pre-commit hooks run:
+
+    ```bash
+    git config --local core.hooksPath .githooks/
+    ```
 
 - for new virtual environment:
 
@@ -32,8 +35,29 @@
 - run solution:
 
     ```bash
-    python3 file.py
+    python3 src/file.py
     ```
+
+- for static analysis used [pylint](https://www.pylint.org/):
+
+    ```bash
+    pylint **/*.py --rcfile=.pylintrc
+    
+    pylint **/*.py --rcfile=.pylintrc_test
+    ```
+
+- for static type check used [mypy](http://mypy-lang.org/):
+
+    ```bash
+    mypy **/*.py
+    ```
+
+- tested with [pytest](https://docs.pytest.org/en/stable/):
+
+    ```bash
+    python3 -m pytest
+    ```
+
 
 ## Links
 
