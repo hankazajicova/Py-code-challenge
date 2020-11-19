@@ -1,6 +1,13 @@
 import random
 
-user_possibilities = ["low", "high", "correct"]
+START_MIN_VALUE = 1
+START_MAX_VALUE = 100
+
+LOW_INPUT = "low"
+HIGH_INPUT = "high"
+CORRECT_INPUT = "correct"
+
+USER_POSSIBILITIES = [LOW_INPUT, HIGH_INPUT, CORRECT_INPUT]
 
 def input_validator(user_input: str) -> bool:
     """user input validation
@@ -11,7 +18,7 @@ def input_validator(user_input: str) -> bool:
     Returns:
         bool: validation
     """
-    if user_input in user_possibilities:
+    if user_input in USER_POSSIBILITIES:
         return True
 
     return False
@@ -22,8 +29,8 @@ def guess_two_random() -> None:
     """
     guess and user (secret) number validation
     """
-    min_value = 1
-    max_value = 100
+    min_value = START_MIN_VALUE
+    max_value = START_MAX_VALUE
     number_of_guesses = 0
     while True:
         if (max_value - min_value) < 0:
@@ -38,12 +45,12 @@ def guess_two_random() -> None:
             print("please, input if it's correct, low or high")
             continue
 
-        if user_validation == "low":
+        if user_validation == LOW_INPUT:
             min_value = prog_guess + 1
-        elif user_validation == "high":
+        elif user_validation == HIGH_INPUT:
             max_value = prog_guess - 1
 
-        if user_validation == "correct":
+        if user_validation == CORRECT_INPUT:
             break
 
     print("Cool, your guess {guess} is correct. You guessed {number} times.".format(
@@ -52,13 +59,13 @@ def guess_two_random() -> None:
 guess_two_random()
 
 
-# faster approach
+# half approach
 def guess_two_half() -> None:
     """
     guess and user (secret) number validation
     """
-    min_value = 1
-    max_value = 100
+    min_value = START_MIN_VALUE
+    max_value = START_MAX_VALUE
     number_of_guesses = 0
     while True:
         if (max_value - min_value) < 0:
@@ -73,12 +80,12 @@ def guess_two_half() -> None:
             print("please, input if it's correct, low or high")
             continue
 
-        if user_validation == "low":
+        if user_validation == LOW_INPUT:
             min_value = prog_guess
-        elif user_validation == "high":
+        elif user_validation == HIGH_INPUT:
             max_value = prog_guess
 
-        if user_validation == "correct":
+        if user_validation == CORRECT_INPUT:
             break
 
     print("Cool, your guess {guess} is correct. You guessed {number} times.".format(
