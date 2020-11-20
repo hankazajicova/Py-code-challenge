@@ -50,9 +50,9 @@ def diagonale_check(board: list) -> int:
         int: won player
     """
     if (board[0][0] == board[1][1] == board[2][2]) or (board[2][0] == board[1][1] == board[0][2]):
-        if board[0][0] != 0:
+        if board[1][1] != 0:
             print("won in diagonale")
-            return board[0][0]
+            return board[1][1]
 
     print("not in diagonale")
     return None
@@ -71,10 +71,12 @@ def get_winner(board: list) -> int:
     for won in win_type:
         winner = won(board)
         if winner is not None:
-            print("The winner is player:")
+            print(f"The winner is player: {winner}")
             return winner
 
+    print("There is no winner")
     return 0
 
-tic_tac_toe = get_winner(board_1)
-print(tic_tac_toe)
+if __name__ == '__main__':
+    tic_tac_toe = get_winner(board_1)
+    print(tic_tac_toe)

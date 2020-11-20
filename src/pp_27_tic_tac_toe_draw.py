@@ -1,3 +1,5 @@
+from pp_26_check_tic_tac_toe import get_winner
+
 game = [[0, 0, 0],
 	    [0, 0, 0],
 	    [0, 0, 0]]
@@ -34,33 +36,30 @@ def play_the_game(board: list):
         board (list): input board
     """
     number_of_moves = 0
+    current_player = PLAYER_1
     while True:
-        if number_of_moves == 9:
+        if number_of_moves >= 9:
             break
-        print("Make your move as row number,column number")
-        player_1 = input("Player 1, you are on - row/column: ")
-        player_1_move = player_move(player_1)
 
-        if board[player_1_move['row']][player_1_move['column']] == 0:
-            board[player_1_move['row']][player_1_move['column']] = PLAYER_1
+        print("Make your move as row number,column number")
+        player_input = input(f"Player {current_player}, you are on - row/column: ")
+        players_move = player_move(player_input)
+
+        if board[players_move['row']][players_move['column']] == 0:
+            board[players_move['row']][players_move['column']] = current_player
             number_of_moves += 1
 
         print(game[0])
         print(game[1])
         print(game[2])
 
-        print("Make your move as row number,column number")
-        player_2 = input("Player 2, you are on - row/column: ")
-        player_2_move = player_move(player_2)
+        if get_winner(game) != 0:
+            break
 
-        if board[player_2_move['row']][player_2_move['column']] == 0:
-            board[player_2_move['row']][player_2_move['column']] = PLAYER_2
-            number_of_moves += 1
-
-        print(game[0])
-        print(game[1])
-        print(game[2])
-
+        if current_player == PLAYER_1:
+            current_player = PLAYER_2
+        else:
+            current_player = PLAYER_1
 
     print("Game over")
 
